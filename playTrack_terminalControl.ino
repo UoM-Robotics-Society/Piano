@@ -45,6 +45,7 @@ char data[numChars]; static uint8_t pData = 0;
 // store data that is transmitted to the shift register
 // As shift registers are indexed from 1, chordToPlay[0] is meaningless. 
 uint8_t chordToPlay[] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; 
+//SoftwareSerial mySerial = SoftwareSerial(); 
 
 void readLine(char *s); 
 void initChord(); 
@@ -62,8 +63,6 @@ void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin,  OUTPUT); 
 
-  //outputChord(); 
-
   Serial.begin(9600);
   Serial.println("reset");
 }
@@ -79,7 +78,7 @@ void loop() {
       readChord(); 
       if(cmpString(data, "end"))break; 
       outputChord(); 
-      //testChord(); 
+      testChord(); 
     }
     initChord(); 
     outputChord(); 
